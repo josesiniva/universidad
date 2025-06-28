@@ -1,7 +1,7 @@
 """
 URL configuration for universidad project.
 
-The urlpatterns list routes URLs to views. For more information please see:
+The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
 Examples:
 Function views
@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,12 +27,15 @@ urlpatterns = [
     path('showprofesor/',views.profesorShow, name='showprofesor'),
     path('newprofesor/',views.profesorNew, name='newprofesor'),
     path('editprofesor/<int:idprofesor>/',views.profesorEdit, name='editprofesor'),
+    path('updateprofesor/<int:idprofesor>/',views.profesorUpdate, name='updateprofesor'),
     path('deleteprofesor/<int:idprofesor>/',views.profesorDestroy, name='deleteprofesor'),
-
-    #materia
     path('showmateria/',views.materiaShow, name='showmateria'),
-    path('newmateria/', views.materiaNew, name='newmateria'),
+    path('newmateria/',views.materiaNew, name='newmateria'),
     path('editmateria/<int:idmateria>/',views.materiaEdit, name='editmateria'),
     path('updatemateria/<int:idmateria>/',views.materiaUpdate, name='updatemateria'),
     path('deletemateria/<int:idmateria>/',views.materiaDestroy, name='deletemateria'),
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

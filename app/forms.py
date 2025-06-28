@@ -1,8 +1,9 @@
-from django import forms 
+from django import forms
 from app.models import Profesor
+from app.models import Materia
 
-class ProfesorForm(forms.ModelForm): 
-    class Meta: 
+class ProfesorForm(forms.ModelForm):
+    class Meta:
         model = Profesor
         fields = '__all__' # O la lista específica de campos que queremos usar
 
@@ -17,23 +18,8 @@ class ProfesorForm(forms.ModelForm):
             'fecha_ingreso': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}), # ¡Aquí está la clave!
             
         }
-        
-       
-from django import forms 
-from app.models import Materia
 
-class MateriaForm(forms.ModelForm): 
-    class Meta: 
+class MateriaForm(forms.ModelForm):
+    class Meta:
         model = Materia
         fields = '__all__' # O la lista específica de campos que queremos usar
-
-        # Usamos este widget para dar al usuario una ayuda al ingresar la fecha
-        widgets = {
-            'nombre_materia': forms.TextInput(attrs={'class': 'form-control'}),
-            'unidades_creditos': forms.TextInput(attrs={'class': 'form-control'}),
-            'modalidad': forms.TextInput(attrs={'class': 'form-control'}),
-           
-        }
-
-
-
